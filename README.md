@@ -19,3 +19,12 @@ helm install ssh-pod ./helm-chart/ssh-pod -n ssh-pod
 ```bash
 helmfile apply -f helm-chart/helmfile.yaml
 ```
+
+## Deploy with k8s resources
+
+You can deploy ssh pod with resources provided in resources folder. this approach helps you have more control on resources and customize that resources.
+after changing resource by your needs you can deploy resources with below command:
+
+```bash
+kubectl create -f resources/
+```

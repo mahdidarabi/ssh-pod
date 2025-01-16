@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/instance: ssh-pod
+    app.kubernetes.io/name: ssh-pod
+    app.kubernetes.io/version: 0.0.1
+  name: ssh-pod
+  namespace: ssh-pod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ssh-pod
+  template:
+    metadata:
+      labels:
+        app: ssh-pod
+    spec:
+      containers:
+        - image: docker.io/mahdidarabi/openssh-server:0.0.1
+          imagePullPolicy: IfNotPresent
+          name: ssh-container
+          ports:
+            - containerPort: 22
+              protocol: TCP
+          resources:
+            limits:
+              cpu: "1"
+              memory: 2Gi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
