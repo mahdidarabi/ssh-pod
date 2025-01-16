@@ -1,0 +1,6 @@
+apiVersion: v2
+name: ssh-pod
+description: A Helm chart for deploy a POD with SSH enabled
+type: application
+version: "1.0.0"
+appVersion: "1.0.0"

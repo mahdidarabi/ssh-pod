@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "ssh-pod.fullname" . }}
+  labels:
+    {{- include "ssh-pod.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "ssh-pod.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "ssh-pod.name" . }}
+    spec:
+      containers:
+      - name: ssh-container
+        image: {{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+        ports:
+        - containerPort: 22

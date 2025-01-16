@@ -1,0 +1,15 @@
+replicaCount: 1
+
+image:
+  registry: docker.io
+  repository: mahdidarabi/openssh-server
+  tag: "0.0.1"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 22
+  nodePort: ""
+
+nameOverride: ""
+fullnameOverride: ""
